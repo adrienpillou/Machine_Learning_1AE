@@ -1,9 +1,10 @@
 Projet Technique 1AE
 
 Ce projet a pour but d'utiliser le 'machine learning' afin de faire 
-de la reconnaissance de formes géométrique.
+de la reconnaissance de formes gÃ©omÃ©trique.
 
-Réalisé par Adrien Pillou, Arnaud Lorotte, Théotime Forestier en 2018/2019.
+RÃ©alisÃ© par Adrien Pillou, Arnaud Lorotte, ThÃ©otime Forestier en 2018/2019.
 
 Lien du Trello : https://trello.com/invite/b/1V7u55cc/dd8cf49fc278dd8722927a568322fa11/projet-technique-1ae
 Lien du Reposit GitHub : https://github.com/adrienpillou/Machine_Learning_1AE
+Lien de TensorFlow.js : https://js.tensorflow.org/
