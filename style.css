@@ -104,6 +104,7 @@ h3{
   background-color: black;
   display: flex;
   flex-direction: column;
+  overflow:auto;
   color: white;
 }
 
