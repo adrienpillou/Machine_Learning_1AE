@@ -13,15 +13,22 @@
       <h3>Ce projet à été réalisé en utilisant TensorFlow.js</h3>
     </header>
     <div class="interface">
-      <div id="visual-console">
-
-      </div>
-      <div class="commandes">
-        <button onclick="Training()" type="button" name="button" class="button">Entrainer</button>
-        <button onclick="Launch()" type="button" name="button" class="button">Lancer</button>
+      <div id="input">
+        <p style="color:black;">Déposez une image</p>
       </div>
 
+      <div class="output">
+        <div id="visual_console">
+        </div>
+        <div id="commands">
+          <button onclick="Training()" type="button" name="button" class="button">Entrainer</button>
+          <button onclick="Launch()" type="button" name="button" class="button">Lancer</button>
+          <button onclick="KillTask()" type="button" name="button" class="button">Arrêt</button>
+          <button onclick="ClearConsole()" type="button" name="button" class="button" id="clear">Nettoyer</button>
+        </div>
+      </div>
     </div>
+
     <div id="pied">
       <div class="credits">
         <ul>

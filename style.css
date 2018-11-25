@@ -53,25 +53,30 @@ h3{
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  -webkit-transition: background-color .2s; /* Safari */
-  transition: background-color .2s;
+  width:128px;
+  -webkit-transition: background-color .25s; /* Safari */
+  transition: background-color .25s;
 }
 
 .button:hover{
   background-color: rgb(204,102,0);
 }
+#clear:hover{
+  background-color: rgb(255,0,0);
+}
 
 .interface{
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content:space-evenly;
   padding: 4px;
-  width: 500px;
+  width: 1000px;
   margin: auto;
 }
 
-.commandes{
-  align-self: flex-start;
+#commands{
+  align-self: flex-end;
+  justify-content: space-between;
+  display: flex;
   padding-top: 4px;
 }
 
@@ -90,9 +95,34 @@ h3{
   background-color: rgb(40,40,40);
 }
 
-#visual-console{
+#visual_console{
   width: 500px;
   height:333px;
+  padding: 15px;
+  line-height: 6px;
   margin: auto;
   background-color: black;
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+
+#input{
+  width: 255px;
+  height:255px;
+  margin: auto;
+  background-color: rgb(150,150,150);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#input p{
+  color: black;
+}
+
+#visual_console p{
+  padding: 0;
+  margin: 6px 0px;
+  font-size: 16px;
 }
