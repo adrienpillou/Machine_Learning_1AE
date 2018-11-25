@@ -8,14 +8,15 @@ Vert => information constat
 */
 
 var isRunning=false;
+var console=document.getElementById('visual_console');
 
 function Training(){
-      if(!isRunning){
+    if(!isRunning){
         isRunning=true;
         document.getElementById('visual_console').innerHTML+="<p>>> Entrainement</p>";
-      }else{
+    }else{
         document.getElementById('visual_console').innerHTML+="<p style='color:green;'>Le programme est actuellement en cours...</p>";
-      }
+    }
 }
 
 function Launch(){
@@ -38,12 +39,14 @@ function KillTask(){
     isRunning=false;
     document.getElementById('visual_console').innerHTML+="<p style='color:red;'>>> Le programme a été forcé à quitter</p>";
   }else{
-    document.getElementById('visual_console').innerHTML+="<p style='color:yellow;'>>> Aucun programme n'a été lancé</p>";
+    document.getElementById('visual_console').innerHTML+="<p style='color:yellow;'>Aucun programme n'a été lancé</p>";
   }
 }
 
 //Ajoute une nouvelle ligne de texte à la console
 function AddConsoleLine(message, color){
-  if(color==null)color='white';//Si la couleur n'a pas été renseigné
-  document.getElementById('visual_console').innerHTML+="<p style='color:" + color + ";'>" + message + "</p>";
+	if(color==null)color='white';//Si la couleur n'a pas été renseigné
+	document.getElementById('visual_console').innerHTML+="<p style='color:" + color + ";'>" + message + "</p>";
 }
+
+

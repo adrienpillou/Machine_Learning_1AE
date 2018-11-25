@@ -15,6 +15,9 @@ body{
   background-color: rgb(32,32,32);
   color: white;
   width: auto;
+  height:100%;
+  margin:0;
+  padding:0;
 }
 
 header{
@@ -81,7 +84,6 @@ h3{
 }
 
 #pied {
-  width:100%;
   height:44px;
   padding-top:16px;
   background:white;
@@ -89,9 +91,10 @@ h3{
   font-weight:bold;
   font-size:16px;
   text-align:center;
-  position:absolute;
+  margin-top:32px;
   bottom:0;
   left:0;
+  width:auto;
   background-color: rgb(40,40,40);
 }
 
@@ -105,6 +108,7 @@ h3{
   display: flex;
   flex-direction: column;
   overflow:auto;
+  text-overflow:ellipsis clip;
   color: white;
 }
 
