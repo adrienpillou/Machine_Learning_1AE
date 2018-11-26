@@ -108,7 +108,6 @@ h3{
   display: flex;
   flex-direction: column;
   overflow:auto;
-  text-overflow:ellipsis clip;
   color: white;
 }
 

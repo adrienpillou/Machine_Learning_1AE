@@ -8,27 +8,26 @@ Vert => information constat
 */
 
 var isRunning=false;
-var console=document.getElementById('visual_console');
 
 function Training(){
     if(!isRunning){
         isRunning=true;
-        document.getElementById('visual_console').innerHTML+="<p>>> Entrainement</p>";
+        AddConsoleLine('>> Entrainement');
     }else{
-        document.getElementById('visual_console').innerHTML+="<p style='color:green;'>Le programme est actuellement en cours...</p>";
+        AddConsoleLine('Le programme est actuellement en cours...','green');
     }
 }
 
 function Launch(){
     if(!isRunning){
       isRunning=true;
-      document.getElementById('visual_console').innerHTML+="<p>>> Lancement</p>";
+      AddConsoleLine('>> Lancement');
     }else{
-      document.getElementById('visual_console').innerHTML+="<p style='color:green;'>Le programme est actuellement en cours...</p>";
+      AddConsoleLine('Le programme est actuellement en cours...','green');
     }
 }
 
-//Nettoie la console
+//Nettoyage de la console
 function ClearConsole(){
     document.getElementById('visual_console').innerHTML="";
 }
@@ -37,16 +36,16 @@ function ClearConsole(){
 function KillTask(){
   if(isRunning){
     isRunning=false;
-    document.getElementById('visual_console').innerHTML+="<p style='color:red;'>>> Le programme a été forcé à quitter</p>";
+    AddConsoleLine('>> Le programme a été forcé à quitter','red');
   }else{
-    document.getElementById('visual_console').innerHTML+="<p style='color:yellow;'>Aucun programme n'a été lancé</p>";
+    AddConsoleLine('Aucun programme n\'a été lancé','yellow');
   }
 }
 
 //Ajoute une nouvelle ligne de texte à la console
 function AddConsoleLine(message, color){
 	if(color==null)color='white';//Si la couleur n'a pas été renseigné
-	document.getElementById('visual_console').innerHTML+="<p style='color:" + color + ";'>" + message + "</p>";
+  var console=document.getElementById('visual_console');
+  console.innerHTML+="<p style='color:" + color + ";'>" + message + "</p>";
+  console.scrollTop = console.scrollHeight - console.clientHeight;
 }
-
-
