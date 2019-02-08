@@ -9,5 +9,6 @@ Lien du Trello : https://trello.com/invite/b/1V7u55cc/dd8cf49fc278dd8722927a5683
 Lien du Reposit GitHub : https://github.com/adrienpillou/Machine_Learning_1AE
 Lien de TensorFlow.js : https://js.tensorflow.org/
 
+Exemple reconnaissance de chiffres TF.js : https://storage.googleapis.com/tfjs-examples/mnist/dist/index.html
 Page du projet MNIST : https://js.tensorflow.org/tutorials/mnist.html
 Exemples Tensor.js : https://github.com/tensorflow/tfjs-examples/tree/master/mnist
