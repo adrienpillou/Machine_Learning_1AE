@@ -3,8 +3,9 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="style.css">
-    <script src="main.js"></script>
-    <script src="console.js"></script>
+    <script src="./main.js"></script>
+    <!-- Dernière version de TensorFlow.js -->
+    <script src="https://unpkg.com/@tensorflow/tfjs"></script>
     <link href="https://fonts.googleapis.com/css?family=Niramit" rel="stylesheet">
     <title>Reconnaissance Formes Géométrique</title>
   </head>
@@ -22,15 +23,15 @@
         <div id="visual_console">
         </div>
         <div id="commands">
-          <button onclick="Training()" type="button" name="button" class="button">Entrainer</button>
-          <button onclick="Launch()" type="button" name="button" class="button">Lancer</button>
-          <button onclick="KillTask()" type="button" name="button" class="button">Arrêt</button>
-          <button onclick="ClearConsole()" type="button" name="button" class="button" id="clear">Nettoyer</button>
+          <button onclick="TrainModel()" type="button" name="button" class="button">Entrainer</button>
+          <button onclick="App()" type="button" name="button" class="button">Lancer</button>
+          <button onclick="" type="button" name="button" class="button">Arrêt</button>
+          <button onclick="" type="button" name="button" class="button" id="clear">Nettoyer</button>
         </div>
       </div>
     </div>
 
-    <div id="pied">
+    <!--<div id="pied">
       <div class="credits">
         <ul>
           <li>Adrien Pillou</li>
@@ -39,6 +40,6 @@
           <li style="float:right;">2018-2019</li>
         </ul>
       </div>
-    </div>
+    </div>-->
   </body>
 </html>
