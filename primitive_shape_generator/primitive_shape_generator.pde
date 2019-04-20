@@ -4,25 +4,25 @@ de formes primitives de manière aléatoire.*/
 //References P3 : https://processing.org/reference
 
 /*Palette : */
-color vert = color(60,174,163);
-color jaune = color(246,213,92);
-color rouge = color(237,85,59);
-color bleu = color(32,99,155);
-/*------------------------------*/
+color[] colorArray={#1ABC9C, #2ECC71,
+                    #3498DB, #8E44AD,
+                    #F1C40F, #D35400, 
+                    #C0392B};
+/*---------------------------------------------*/
 
 /*Variables globales : */
 color currentColor;
 String currentShape;
 String savePath="./Snapshots/";
 int index;
-int imageToGenerate = 1000;
-color[] colorArray={vert,jaune,rouge,bleu};
-/*-----------------------------------------*/
+int imageToGenerate = 100;
+/*-----------------------------*/
 
 void setup(){
- noStroke();
- size(64,64);//Taille de l'image générée (canvas)
- background(255);
+  //smooth(4);//antialiasing x4
+  noStroke();
+  size(64,64);//Taille de l'image générée (canvas)
+  background(255);
 }
 
 void draw(){
@@ -47,7 +47,7 @@ void draw(){
       
       case 2:
       currentShape="carre";
-      int rectWidth=(int)random(width*.1,width*.33);
+      int rectWidth=(int)random(width*.1,width*.5);
       rect(0,0,rectWidth,rectWidth);
       break;
       
@@ -72,4 +72,9 @@ void draw(){
     exit();
   }
   delay(33);//Ajout d'un délai pour la visibilité (ms)
+}
+/*Classe pour le .json : */
+class Shape{
+ String name;
+ String type;
 }
