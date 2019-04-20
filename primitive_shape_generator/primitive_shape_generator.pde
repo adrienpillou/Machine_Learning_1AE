@@ -3,23 +3,25 @@ de formes primitives de manière aléatoire.*/
 
 //References P3 : https://processing.org/reference
 
-/*Palette :*/
+/*Palette : */
 color vert = color(60,174,163);
 color jaune = color(246,213,92);
 color rouge = color(237,85,59);
 color bleu = color(32,99,155);
 /*------------------------------*/
 
+/*Variables globales : */
 color currentColor;
 String currentShape;
 String savePath="./Snapshots/";
 int index;
-int imageToGenerate = 10;
+int imageToGenerate = 1000;
 color[] colorArray={vert,jaune,rouge,bleu};
+/*-----------------------------------------*/
 
 void setup(){
  noStroke();
- size(64,64);//Taille de l'image générée
+ size(64,64);//Taille de l'image générée (canvas)
  background(255);
 }
 
@@ -27,7 +29,7 @@ void draw(){
   clear();
   background(255);
   if(index<imageToGenerate){
-    PVector pivot = new PVector(width/2,width/2);/*!!!*/
+    PVector pivot = new PVector(width/2,width/2);//Modification del'origine du repère
     translate(pivot.x,pivot.y);
     rectMode(CENTER);
     rotate(random(-.99,.99));
@@ -61,11 +63,13 @@ void draw(){
       triangle(x1, y1, x2, y2, x3, y3);
       break;
     }
-    println(currentShape, index);//Affichage console
+    //println(currentShape, index);//Affichage console
+    println(imageToGenerate-index+" images restantes.");
     saveFrame(savePath + currentShape+"_"+index+".png");//Enregistrement de l'image
     index++;
   }else{
+    println("Terminé.\n"+imageToGenerate+" images sauvegardées dans "+savePath);
     exit();
   }
-  delay(100);
+  delay(33);//Ajout d'un délai pour la visibilité (ms)
 }
