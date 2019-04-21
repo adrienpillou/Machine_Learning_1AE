@@ -1,4 +1,4 @@
-/*Ce programme permet de générer des images 
+/*Ce programme permet de générer une spritesheet 
 de formes primitives de manière aléatoire.*/
 
 //References P3 : https://processing.org/reference
@@ -16,12 +16,14 @@ final String sheetFormat=".png";
 String sheetId;
 color currentColor;
 String currentShape;
+String currentId;
 int index;
-int shapeSize = 64;//taille d'une forme (16,32,64 ou 128 px)
+int maxIndex;
+int shapeSize = 128;//taille d'une forme (16,32,64 ou 128 px)
 PVector pivot;
 PVector currentPos;
-JSONObject jsonObject;
-JSONArray jsonArray;
+JSONObject json;
+JSONArray list;
 /*-----------------------------*/
 
 void setup(){
@@ -32,7 +34,8 @@ void setup(){
   pivot = new PVector(shapeSize/2,shapeSize/2);
   rectMode(CENTER);
   sheetId=str(day())+str(month())+str(year())+str(hour())+str(minute());
-  CreateJSONArray();
+  list = new JSONArray();
+  maxIndex = (width/shapeSize)*(height/shapeSize);
 }
 
 void draw(){
@@ -68,9 +71,11 @@ void draw(){
       triangle(x1, y1, x2, y2, x3, y3);
       break;
     }
-  //println((index+1) + " formes générées sur la feuille.");
-  String currentId = currentShape+"_"+index;
-  AddJSONObject(currentId,currentShape);
+  currentId = currentShape+"_"+index;
+  AddObjectToJSON();//Ecriture de l'objet à l'intérieur du fichier .json.
+  float percentage=(float)index/ (float)maxIndex;
+  String complete=nf(percentage*100,2,2)+"%";
+  println(complete);//Pourcentage d'avancement.
   index++;
   pivot.x+=shapeSize;
    if(pivot.x>=width){
@@ -78,25 +83,41 @@ void draw(){
        pivot.y+=shapeSize;
        pivot.x=shapeSize/2;
    }else{
-       saveFrame(savePath + "generated_sheet"+sheetFormat);//Enregistrement de l'image
-       println("Terminé.\n"+index+" images sauvegardées dans "+savePath);
+       saveFrame(savePath + "generated_sheet"+sheetFormat);//Enregistrement de l'image.
+       println("================================\nTerminé.\n"+index+" images sauvegardées dans "+savePath);
+       //PrintObject(3,3);
        exit();
    }
    }
-  //delay(0);//Ajout d'un délai pour la visibilité (ms)
+  //delay(33);//Ajout d'un délai pour la visibilité (ms).
 }
 
-//https://github.com/shiffman/LearningProcessing/tree/master/chp18_data
 /*.JSON : */
-void CreateJSONArray(){
-  jsonArray=new JSONArray();
-  saveJSONArray(jsonArray,"./data/shapesheet_"+sheetId+"_data.json");
+//Format de la clé d'accès d'un objet/forme : '$colonne'_'$rangée'.
+void AddObjectToJSON(){
+  JSONObject buffer = new JSONObject();
+  JSONObject keyBuffer = new JSONObject();
+  int col=(int)(pivot.x/shapeSize)+1;
+  int row=(int)(pivot.y/shapeSize)+1;
+  String id=col+"_"+row;
+  buffer.setString("id",currentId);
+  buffer.setString("type",currentShape);
+  buffer.setInt("column",col);
+  buffer.setInt("row",row);
+  keyBuffer.setJSONObject(id,buffer);
+  list.setJSONObject(index,keyBuffer);
+  json=new JSONObject();
+  json.setJSONArray("sheet_content",list);
+  saveJSONObject(json,"./data/sheet_data.json");
 }
 
-void AddJSONObject(String objectId, String objectType){
-  jsonObject = new JSONObject();
-  jsonObject.setString("id",objectId);
-  jsonObject.setString("type",objectType);
-  jsonArray.append(jsonObject);
-  saveJSONArray(jsonArray,"./data/shapesheet_"+sheetId+"_data.json");
+void PrintObject(int col,int row){
+  int targetKey=width/shapeSize*(row-1)+(col-1);//accès par index (JSONarray)
+  JSONObject fileBuffer;
+  JSONObject objectBuffer;
+  JSONArray arrayBuffer;
+  fileBuffer=loadJSONObject("./data/sheet_data.json");
+  arrayBuffer=fileBuffer.getJSONArray("sheet_content");
+  objectBuffer=arrayBuffer.getJSONObject(targetKey);
+  println("\n"+objectBuffer);
 }
