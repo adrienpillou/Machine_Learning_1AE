@@ -19,7 +19,7 @@ String currentShape;
 String currentId;
 int index;
 int maxIndex;
-int shapeSize = 128;//taille d'une forme (16,32,64 ou 128 px)
+int shapeSize = 128;//taille d'une forme (8, 16, 32, 64 ou 128 px)
 PVector pivot;
 PVector currentPos;
 JSONObject json;
@@ -34,8 +34,8 @@ void setup(){
   pivot = new PVector(shapeSize/2,shapeSize/2);
   rectMode(CENTER);
   sheetId=str(day())+str(month())+str(year())+str(hour())+str(minute());
-  list = new JSONArray();
   maxIndex = (width/shapeSize)*(height/shapeSize);
+  list = new JSONArray();
 }
 
 void draw(){
@@ -73,32 +73,36 @@ void draw(){
     }
   currentId = currentShape+"_"+index;
   AddObjectToJSON();//Ecriture de l'objet à l'intérieur du fichier .json.
-  float percentage=(float)index/ (float)maxIndex;
-  String complete=nf(percentage*100,2,2)+"%";
-  println(complete);//Pourcentage d'avancement.
+  ShowProgress();
   index++;
-  pivot.x+=shapeSize;
-   if(pivot.x>=width){
-     if(pivot.y<height){
-       pivot.y+=shapeSize;
-       pivot.x=shapeSize/2;
-   }else{
+  if(pivot.x+shapeSize<width){
+    pivot.x+=shapeSize;
+  }else{
+    pivot.x=shapeSize/2;
+    if(pivot.y+shapeSize<height){
+      pivot.y+=shapeSize;
+    }else{
        saveFrame(savePath + "generated_sheet"+sheetFormat);//Enregistrement de l'image.
-       println("================================\nTerminé.\n"+index+" images sauvegardées dans "+savePath);
+       println("================================");
+       println("Processus terminé.\n"+index+" images sauvegardées dans "+savePath);
+       println("Fichier JSON sauvegardé dans ./data/");
+       println("Durée du processus : "+millis()/1000+"s");
        //PrintObject(3,3);
        exit();
-   }
-   }
+    }
+  } 
   //delay(33);//Ajout d'un délai pour la visibilité (ms).
 }
+  
+
 
 /*.JSON : */
 //Format de la clé d'accès d'un objet/forme : '$colonne'_'$rangée'.
 void AddObjectToJSON(){
   JSONObject buffer = new JSONObject();
   JSONObject keyBuffer = new JSONObject();
-  int col=(int)(pivot.x/shapeSize)+1;
-  int row=(int)(pivot.y/shapeSize)+1;
+  int col=floor(pivot.x/shapeSize)+1;
+  int row=floor(pivot.y/shapeSize)+1;
   String id=col+"_"+row;
   buffer.setString("id",currentId);
   buffer.setString("type",currentShape);
@@ -120,4 +124,17 @@ void PrintObject(int col,int row){
   arrayBuffer=fileBuffer.getJSONArray("sheet_content");
   objectBuffer=arrayBuffer.getJSONObject(targetKey);
   println("\n"+objectBuffer);
+}
+
+void ShowProgress(){//Affichage de l'état d'avancement du processus.
+  float percentage=(float)index/ (float)maxIndex;
+  print("[");
+  for(int i=0;i<round(percentage*100)/2;i++){
+    print("*");
+  }
+   for(int i=0;i<50-(round(percentage*100)/2);i++){
+    print(" ");
+  }
+  String complete="] "+round(percentage*100)+"%";
+  print(complete+"\n");//Pourcentage d'avancement.
 }
