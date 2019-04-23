@@ -55,6 +55,20 @@ html, body
   height:100%;
 }
 
+#graph{
+  margin-top: 15px;
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  /*border: solid green 1px;*/
+}
+
+#commands{
+  justify-content: space-between;
+  display: flex;
+  padding-top: 4px;
+}
+
 .content{
   background-color: #95A5A6;
   align-items: stretch;
@@ -70,13 +84,15 @@ html, body
 }
 
 .panel{
-  border: solid red 1px;
+  /*border: solid red 1px;*/
   height: 100%;
   height: 640px;
+  display: flex;
+  justify-content: center;
 }
 
 .results{
-  border: solid blue 1px;
+  /*border: solid blue 1px;*/
   margin-top: 0;
   display: flex;
   flex-direction: row;
@@ -116,4 +132,27 @@ footer{
 .rights{
   float: right;
   margin: 0px 16px;
+}
+
+button {
+  background-color: #2C3E50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 0px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover{
+  background-color: #34495E;
+  cursor: pointer;
+}
+
+button:active {
+  transform: translateY(3px);
 }
