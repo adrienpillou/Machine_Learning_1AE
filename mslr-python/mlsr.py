@@ -5,7 +5,7 @@ import numpy as np
 import random
 import csv
 
-MODEL_NAME='mlsr_model-8_nodes-3_epochs-60acc.model'
+MODEL_NAME='mlsr_model-64_nodes-5_epochs-85acc.model'
 CATEGORIES=["cercle", "carré", "triangle"]#0-Cercle/ 1-Carre/ 2-Triangle
 TESTSET_DIM=999
 IMG_SIZE=32
@@ -43,6 +43,6 @@ for i in range(12):
         if answer==output:
                 plt.title(str(random_image)+' : '+output)#Titre de l'image
         else:
-                plt.title("Erreur",color='r')#Titre de l'image
+                plt.title(str(random_image)+' : '+output,color='r')#Titre de l'image
 plt.show()#Affichage
 
