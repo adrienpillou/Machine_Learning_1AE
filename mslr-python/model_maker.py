@@ -6,8 +6,8 @@ import pickle
 import time
 
 
-iterations=10#Nombre d' 'epochs'
-nodes=128
+iterations=3#Nombre d' 'epochs'
+nodes=8
 NAME="mlsr_model-{}_nodes-{}_epochs-{}".format(nodes, iterations, int(time.time()))
 
 #Chargement de la dataset d'entrainement
