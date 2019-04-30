@@ -1,5 +1,5 @@
 ''' 
-Ce programme effectue 9 prédiction MNIST à partir 
+Ce programme effectue 9 prédictions MNIST à partir 
 du model tf-keras dans situé dans le répertoire 'models'.
 '''
 
