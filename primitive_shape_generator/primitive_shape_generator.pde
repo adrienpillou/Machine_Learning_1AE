@@ -73,8 +73,3 @@ void draw(){
   }
   delay(33);//Ajout d'un délai pour la visibilité (ms)
 }
-/*Classe pour le .json : */
-class Shape{
- String name;
- String type;
-}
