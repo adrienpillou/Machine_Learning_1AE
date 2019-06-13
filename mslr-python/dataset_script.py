@@ -7,15 +7,15 @@ import cv2
 import random
 import pickle as pck
 
-DATASETDIR="./dataset"
-CATEGORIES=["Circle","Square","Triangle"]#0-Cercle/ 1-Carre/ 2-Triangle
+DATASETDIR="./dataset/trainingset"
+CATEGORIES=["carres","cercles","triangles"]#0-Carré/ 1-Cercle/ 2-Triangle
 IMG_SIZE=32
 training_data=[]
 
 def create_training_data():
         for category in CATEGORIES:
                 path=os.path.join(DATASETDIR,category)
-                class_num=CATEGORIES.index(category)
+                class_num = CATEGORIES.index(category)
                 for img in os.listdir(path):
                         try:
                                 img_array=cv2.imread(os.path.join(path,img),cv2.IMREAD_GRAYSCALE)

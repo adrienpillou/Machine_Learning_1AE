@@ -5,10 +5,9 @@ from tensorflow.keras.callbacks import TensorBoard
 import pickle
 import time
 
-
-iterations=5#Nombre d' 'epochs'
+iterations=30#Nombre d' 'epochs'
 nodes=64
-NAME="mlsr_model-{}_nodes-{}_epochs-{}".format(nodes, iterations, int(time.time()))
+NAME="mlsr_model-{}_nodes-{}_epochs".format(nodes, iterations)
 
 #Chargement de la dataset d'entrainement
 pickle_in=open("X.pickle","rb")
@@ -22,6 +21,7 @@ X=X/255.0#Conversion gris(0-255) en gris(0-1)
 model = tf.keras.models.Sequential([
   tf.keras.layers.Flatten(input_shape=(32, 32)),
   tf.keras.layers.Dense(nodes, activation='relu'),
+  tf.keras.layers.Dense(nodes, activation='relu'),
   tf.keras.layers.Dropout(0.2),
   tf.keras.layers.Dense(3, activation='softmax')
 ])
@@ -29,7 +29,7 @@ model = tf.keras.models.Sequential([
 board=TensorBoard(log_dir='logs/{}'.format(NAME))#Tensorboard->http://localhost:6006
 model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])#Compilation
 model.fit(X, Y, epochs=iterations,callbacks=[board])#Session d'entrainement
-model.save('./models/'+NAME+'.model')#Sauvegarde du model 
+model.save('mlsr-model.model')#Sauvegarde du model 
 
 
 
