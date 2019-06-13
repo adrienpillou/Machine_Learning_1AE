@@ -10,14 +10,14 @@ color[] colorArray={#1ABC9C, #2ECC71,
                     #C0392B};
 /*---------------------------------------------*/
 
-String categories[] = {"cercle", "carré", "triangle"}; 
+String categories[] = {"carrés", "cercles", "triangles"}; 
 
 /*Variables globales : */
 color currentColor;
 String currentShape;
 String savePath="./Snapshots/";
 int index;
-int imageToGenerate = 100;
+int imageToGenerate = 1000;
 int shapeCode=2;
 /*-----------------------------*/
 
@@ -41,18 +41,19 @@ void draw(){
     PVector offset = new PVector(random(-1,1), random(-1,1));
     offset.x*=width*.1;
     offset.y*=width*.1;
+    //offset=new PVector(0,0);
     
     switch(shapeCode){//Selectionne le type de forme géometrique
       case 0:
-      currentShape="Circle";
-      r = (int)random(width*.1,width*.75);
-      ellipse(offset.x, offset.y, r, r);
-      break;
-      
-      case 1:
       currentShape="Square";
       int rectWidth=(int)random(width*.1,width*.5);
       rect(offset.x, offset.y, rectWidth, rectWidth);
+      break;
+
+      case 1:
+      currentShape="Circle";
+      r = (int)random(width*.1,width*.75);
+      ellipse(offset.x, offset.y, r, r);
       break;
       
       case 2:
